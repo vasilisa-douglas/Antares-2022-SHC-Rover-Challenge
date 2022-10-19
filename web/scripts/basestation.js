@@ -75,29 +75,10 @@ function setup() {
     });
 }
 
-//look at controller.js------------------------------------------------------------------------------------------------------
-
-// MODIFY TO FIT GAMEPAD    
-window.addEventListener('keypress', (event)=> {
-    var name = event.key;
-    console.log(name);
-}, false)
 
 //----------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-//window.addEventListener('gamepadconnected', (event) => {
-//    console.log('A gamepad was connected:', event.gamepad);
-//  
-//});
-
-//window.addEventListener("gamepaddisconnected", (event) => {
-//  console.log("Waiting for gamepad.", event.gamepad);
-//});
-
-
+// Controls
+//----------------------------------------------------------------------------------------------------------------------------
 
 let gamepadIndex;
 window.addEventListener('gamepadconnected', (event) => {
@@ -111,26 +92,66 @@ setInterval(() => {
 		
 		myGamepad.buttons.map(e => e.pressed).forEach((isPressed, buttonIndex) => {
 			if(isPressed) {
-				// button is pressed; indicate this on the page
-				console.log(buttonIndex);
+        console.log(buttonIndex);
+        switch (buttonIndex)
+        {
+          case 6:
+            console.log("Left Wheels Forward");
+            var command = new ROSLIB.Message({
+              data:"left-forward"
+            });
+            command_pub.publish(command);
+            break;
+          case 7:
+            console.log("Right Wheels Forward");
+            var command = new ROSLIB.Message({
+              data:"right-forward"
+            });
+            command_pub.publish(command);
+            break;
+          case 4:
+            console.log("Left Wheels Reverse");
+            var command = new ROSLIB.Message({
+              data:"left-reverse"
+            });
+            command_pub.publish(command);
+            break;
+          case 5:
+            console.log("Right Wheels Reverse");
+            var command = new ROSLIB.Message({
+              data:"right-reverse"
+            });
+            command_pub.publish(command);
+            break;
+          case 0:
+            console.log("Follow Instructions");
+            var command = new ROSLIB.Message({
+              data:"follow-instructions"
+            });
+            command_pub.publish(command);
+            break;
+          case 12:
+            console.log("Arm Up");
+            var command = new ROSLIB.Message({
+              data:"arm-up"
+            });
+            command_pub.publish(command);
+            break;
+          case 13:
+            console.log("Arm Down");
+            var command = new ROSLIB.Message({
+              data:"arm-down"
+            });
+            command_pub.publish(command);
+            break;
+          default:
+            break;
+        }
 			}
 		})
 	}
-}, 100)
+}, 1)
 
-
-// WHEEL
-// Right Trigger
-// Left Trigger
-// Right Bumper
-// Left Bumper
-
-// ARM
-// up arrow button
-// down arrow button
-
-// AUTO
-// letter button
 
 function update_log(message) {
     var log = message.data;
