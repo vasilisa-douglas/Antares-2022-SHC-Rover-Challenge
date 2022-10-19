@@ -136,6 +136,32 @@ void loop() {
     } else if (command == "time") {
       Serial.println(millis());
     }
+
+
+    if (command == "left-forward") {
+      //make left motors go foward
+    }
+    if (command == "right-forward") {
+      //make right motors go forwards
+    }
+    if (command == "left-reverse") {
+      //make left motors go backwards
+    }
+    if (command == "right-reverse") {
+      //make right motors go backwards
+    }
+    if (command == "follow-instructions") {
+      //follow intructions
+    }
+    if (command == "arm-up") {
+      //move arm motor up
+    }
+    if (command == "arm-down") {
+      //move arm motor down
+    }
+
+
+
   }
 
   if (! bmp.performReading()) {
