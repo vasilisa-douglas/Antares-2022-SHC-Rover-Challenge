@@ -6,13 +6,6 @@
 #include <Adafruit_LSM6DSOX.h>
 #include <Adafruit_LIS3MDL.h>
 
-
-#define LED_PIN 25
-
-#define BMP_SCK 7       //also same as SCL
-#define BMP_SDA 6
-#define BMP_SDO 4
-
 #define SEALEVELPRESSURE_HPA (1013.25)
 
 Adafruit_BMP3XX bmp;
@@ -21,16 +14,16 @@ Adafruit_LIS3MDL lis3mdl;
 
 void setup() {
   // Initialize LED_PIN as an output
-  pinMode(LED_PIN, OUTPUT);
+  //pinMode(LED_PIN, OUTPUT);
   // Turn LED on for initialization
-  digitalWrite(LED_PIN, HIGH);
+  //digitalWrite(LED_PIN, HIGH);
 
   // Configure serial transport
   Serial.begin(115200);
   delay(100);
 
   // Turn LED off after serial initialization
-  digitalWrite(LED_PIN, LOW);
+  //digitalWrite(LED_PIN, LOW);
 
   while (!Serial);
   Serial.println("Adafruit BMP388 / BMP390 test");
@@ -127,7 +120,7 @@ void loop() {
     String command = Serial.readStringUntil('\n');
     command.trim();
 
-    if (command == "led_on") {
+    /*if (command == "led_on") {
       digitalWrite(LED_PIN, HIGH);
     } else if (command == "led_off") {
       digitalWrite(LED_PIN, LOW);
@@ -135,7 +128,7 @@ void loop() {
       Serial.println("pong");
     } else if (command == "time") {
       Serial.println(millis());
-    }
+    }*/
 
 
     if (command == "left-forward") {
@@ -159,9 +152,6 @@ void loop() {
     if (command == "arm-down") {
       //move arm motor down
     }
-
-
-
   }
 
   if (! bmp.performReading()) {
